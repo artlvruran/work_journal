@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 align="center">List of Departments</h1>
+    <a class="btn btn-secondary" href="/">Back to Jobs</a>
+    <a class="btn btn-secondary" href="/add_department">Add a Department</a><br>
+    {% for department in departments %}
+        {% if current_user.id == 1 or current_user.id == department["chief"].id %}
+            <a class="btn btn-warning" href="/edit_department/{{department["id"]}}">Edit Department</a>
+            <a class="btn btn-danger" href="/department_delete/{{department["id"]}}">Delete Department</a>
+        {% endif %}
+        <h1>Department # {{loop.index}}</h1>
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>
+                        Title of department
+                    </th>
+                    <th>
+                        Chief
+                    </th>
+                    <th>
+                        Members
+                    </th>
+                    <th>
+                        Department Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-primary">
+                <tr>
+                    <td>
+                        {{department["title"]}}
+                    </td>
+                    <td>
+                        {{department["chief"].surname}} {{department["chief"].name}}
+                    </td>
+                    <td>
+                        {{department["members"]}}
+                    </td>
+                    <td>
+                        {{department["email"]}}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    {% endfor %}
+{% endblock %}

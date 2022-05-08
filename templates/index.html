@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
     <h1 align="center">Works log</h1>
+    <a class="btn btn-secondary" href="/departments">Departments</a>
+    <a class="btn btn-secondary" href="/add_job">Add job</a><br>
     {% for job in jobs %}
+        {% if current_user.id == 1 or current_user.id == job["creator"].id or current_user.id == job["leader"].id %}
+            <a class="btn btn-warning" href="/edit_job/{{job["id"]}}">Edit job</a>
+            <a class="btn btn-danger" href="/jobs_delete/{{job["id"]}}">Delete job</a>
+        {% endif %}
         <h1>Action # {{loop.index}}</h1>
         <table class="table">
             <thead>

@@ -17,5 +17,9 @@ class Jobs(SqlAlchemyBase):
     start_date = sqlalchemy.Column(sqlalchemy.Date)
     end_date = sqlalchemy.Column(sqlalchemy.Date)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean)
+    creator = sqlalchemy.Column(sqlalchemy.Integer)
+    categories = orm.relation("Category",
+                              secondary="association",
+                              backhref="jobs")
 
     user = orm.relation('User')

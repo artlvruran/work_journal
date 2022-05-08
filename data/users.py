@@ -22,6 +22,7 @@ class User(SqlAlchemyBase, UserMixin):
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime)
 
     jobs = orm.relation("Jobs", back_populates='user')
+    department = orm.relation("Department", back_populates='user')
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
