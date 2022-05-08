@@ -4,8 +4,8 @@
     {% for job in jobs %}
         <h1>Action # {{loop.index}}</h1>
         <table class="table">
-            <thead class="thead-light">
-                <tr>
+            <thead>
+                <tr class="table-dark">
                     <th>
                         Title of activity
                     </th>
@@ -25,25 +25,28 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
+                    <td class="table-primary">
                         {{job["title"]}}
                     </td>
-                    <td>
+                    <td class="table-primary">
                         {{job["leader"].surname}} {{job["leader"].name}}
                     </td>
-                    <td>
+                    <td class="table-primary">
                         {{job["duration"]}} hours
                     </td>
-                    <td>
+                    <td class="table-primary">
                         {{job["list_of_collaborators"]}}
                     </td>
-                    <td>
+
                         {% if job["is_finished"]%}
-                            is finished
+                            <td class="table-success">
+                                is finished
+                            </td>
                         {% else %}
-                            is not finished
+                            <td class="table-danger">
+                                is not finished
+                            </td>
                         {% endif %}
-                    </td>
                 </tr>
             </tbody>
 
